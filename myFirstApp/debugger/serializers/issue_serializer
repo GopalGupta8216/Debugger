@@ -1,0 +1,13 @@
+from rest_framework import serializers
+
+from debugger.models.issue import Issue
+
+
+class IssueSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Issue
+        fields = ('project_name',' reported_by','status',' heading','discription','media_uploads','reported_on')
+
+
+

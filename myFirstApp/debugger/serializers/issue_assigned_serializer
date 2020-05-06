@@ -1,0 +1,10 @@
+from rest_framework import serializers
+
+from debugger.models.issue_assigned import Issue_assigned
+
+class Issue_assignedSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Issue_assigned
+        fields = ('assigned_by','assigned_to',' issue_name')
+

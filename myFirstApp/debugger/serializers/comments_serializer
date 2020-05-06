@@ -1,0 +1,10 @@
+from rest_framework import serializers
+
+from debugger.models.comments import Comments
+
+class CommentsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Comments
+        fields = ('commented_by','issue_name','msg','mentions','Created_on')
+
