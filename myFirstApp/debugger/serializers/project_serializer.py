@@ -1,9 +1,10 @@
 from rest_framework import serializers
 
-from debugger.models.project import Project
-
+from debugger.models import Project
+from .user_serializer import UserSerializer
 
 class ProjectSerializer(serializers.ModelSerializer):
+    Users = UserSerialiser(many=True, read_only=True)
 
     class Meta:
         model = Project

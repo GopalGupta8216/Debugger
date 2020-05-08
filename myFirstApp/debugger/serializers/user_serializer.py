@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from debugger.models.user import User
+from debugger.models import User
 
 class UserSerializer(serializers.ModelSerializer):
 
