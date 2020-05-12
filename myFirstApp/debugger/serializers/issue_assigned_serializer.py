@@ -2,8 +2,10 @@ from rest_framework import serializers
 
 from debugger.models import Issue_assigned
 from .user_serializer import UserSerializer
+
+
 class IssueAssignedSerializer(serializers.ModelSerializer):
-    assigned_by = UserSerializer(many=True, read_only=True)
+
 
     class Meta:
         model = Issue_assigned

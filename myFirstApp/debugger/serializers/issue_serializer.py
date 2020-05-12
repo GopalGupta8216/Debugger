@@ -1,12 +1,15 @@
 from rest_framework import serializers
 
-from debugger.models import Issue
-from .project_serializer import ProjectSerializer
+from debugger.models import Issue,User
+
+
 
 
 
 class IssueSerializer(serializers.ModelSerializer):
-    project_name = ProjectSerializer(many=True, read_only=True)
+    assigned_by=serializers.RelatedField(source='User', read_only=True)
+    assigned_to=serializers.RelatedField(source='User', read_only=True)
+
      
     class Meta:
         model = Issue
@@ -14,12 +17,14 @@ class IssueSerializer(serializers.ModelSerializer):
 	'project_name',
 	'reported_by',
 	'status',
-	' heading',
+	'heading',
 	'discription',
 	'media_upload',
 	'reported_on',
 	'last_updated_on',
-	'tag'
+	'tag',
+        'assigned_to',
+        'assigned_by'
 	)
 
 

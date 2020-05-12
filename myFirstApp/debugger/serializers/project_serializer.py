@@ -4,10 +4,15 @@ from debugger.models import Project
 from .user_serializer import UserSerializer
 
 class ProjectSerializer(serializers.ModelSerializer):
-    Users = UserSerialiser(many=True, read_only=True)
+    team_member = UserSerializer(many=True, read_only=True)
 
     class Meta:
         model = Project
-        fields = ('creator','project_name','wiki','team_member')
+        fields = (
+                'creator',
+                'project_name',
+                'wiki',
+                'team_member'
+                )
 
 

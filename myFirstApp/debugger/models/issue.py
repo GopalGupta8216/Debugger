@@ -4,16 +4,16 @@ from .user import User
 from django.utils import timezone
 
 TAG_CHOICES = ( 
-    ("design", "1"), 
-    ("dev", "2"), 
-    ("UI", "3"), 
-    ("Ux", "4"), 
+    ("1","design"), 
+    ("2","dev"), 
+    ("3","UI"), 
+    ("4","Ux"), 
  
 )
 STATUS_CHOICES = (
-        ("reported", "1"),
-    ("checked", "2"),
-    ("solved", "3"),
+        ("1","reported"),
+    ("2","checked"),
+    ("3","solved"),
 )
 class Issue(models.Model):
     project_name = models.ForeignKey(
@@ -55,6 +55,19 @@ class Issue(models.Model):
     choices = TAG_CHOICES,
     default = 'dev'
     )
+    assigned_to = models.ForeignKey(
+     User, 
+     on_delete = models.CASCADE,
+     related_name='assigned_by',
+     default=' '
+     )
+    assigned_to = models.ForeignKey(
+    User,
+    on_delete = models.CASCADE,
+    related_name='assigned_to',
+    default=' '
+    )
+
     def __str__(self):
         return self.heading
 
