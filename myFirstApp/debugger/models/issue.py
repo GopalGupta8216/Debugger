@@ -55,17 +55,19 @@ class Issue(models.Model):
     choices = TAG_CHOICES,
     default = 'dev'
     )
-    assigned_to = models.ForeignKey(
+    assigned_by = models.ForeignKey(
      User, 
      on_delete = models.CASCADE,
      related_name='assigned_by',
-     default=' '
+     null = True,
+     blank = True
      )
     assigned_to = models.ForeignKey(
     User,
     on_delete = models.CASCADE,
     related_name='assigned_to',
-    default=' '
+    null = True,
+    blank = True
     )
 
     def __str__(self):

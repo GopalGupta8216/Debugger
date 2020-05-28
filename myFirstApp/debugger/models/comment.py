@@ -20,7 +20,7 @@ class Comment(models.Model):
 
     mention = models.ManyToManyField( 
     User,
-    related_name='mentions'
+    related_name='mention'
         )
     created_on = models.DateTimeField('date published',auto_now_add=True)
 

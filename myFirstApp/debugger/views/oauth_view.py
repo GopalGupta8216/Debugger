@@ -7,14 +7,14 @@ from rest_framework.response import Response
 import requests
 from rest_framework_simplejwt.tokens import RefreshToken
 
-
-class UserViewSet(viewsets.ModelViewSet):
+class OauthViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list` and `detail` actions.
     """
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly,IsAdmin]
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
 
     def get_tokens_for_user(user):
         refresh = RefreshToken.for_user(user)
@@ -23,7 +23,7 @@ class UserViewSet(viewsets.ModelViewSet):
             'refresh': str(refresh),
             'access': str(refresh.access_token),
     }
-  
+   
     def create(self, request, **kwargs):
         CLIENT_SECRET="oY3vRQevRbFdsO6O02IfWVIGIqzU1XNmq5fVan1w2gXyFuMoIjBpeO8iK22dmFL4jf7n0vlL6mLnjX8TM63MTdYnJndFq25LcNF6nwLnVSKLYqTyDSBlBCZKL0FgJAVg"
         REDIRECT_URL= "https://127.0.0.1:8000/debugger/users/"
@@ -79,14 +79,3 @@ class UserViewSet(viewsets.ModelViewSet):
                     return Response("You don't have a profile picture, Upload One and Try Again", status=status.HTTP_403_FORBIDDEN )    
         response = get_tokens_for_user(user)
         return Response(response, status=status.HTTP_201_CREATED)
-
-        
-
-        
-
-
-
-
-
-
-
